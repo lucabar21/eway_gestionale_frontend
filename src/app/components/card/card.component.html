@@ -1,0 +1,14 @@
+<div class="card_container">
+  <div class="card_header">
+    <span class="card_title">{{ title }}</span>
+    <span class="material-icons"> {{ icon }} </span>
+  </div>
+  <div class="container">
+    <div class="card_info" *ngFor="let element of elements | slice : 0 : 2">
+      <div>
+        <span>{{ element.name || element.title }}</span>
+        <span>{{ element.description || element.surname }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<app-header></app-header>
+<div class="middle_container">
+  <app-sidebar></app-sidebar>
+  <div class="main_content">
+    <span class="title">Segnalazioni</span>
+
+    <div class="table_container">
+      <table>
+        <thead>
+          <tr>
+            <th>Intestazione</th>
+            <th class="hide_on_mobile hide_on_tablet">Informazioni</th>
+            <th>Progetto</th>
+            <th class="hide_on_mobile hide_on_tablet">Data di creazione</th>
+            <th class="hide_on_mobile hide_on_tablet">Ultimo aggiornamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reports">
+            <td>{{ report.title }}</td>
+            <td class="hide_on_mobile hide_on_tablet">
+              {{ report.description.slice(0, 70) }}
+              {{ report.description.length > 70 ? "..." : "" }}
+            </td>
+            <td>{{ report.project?.name }}</td>
+            <td class="hide_on_mobile hide_on_tablet">
+              {{ report.created_at | date : "dd/MM/yyyy" }}
+            </td>
+            <td class="hide_on_mobile hide_on_tablet">
+              {{ report.updated_at | date : "HH:mm - dd/MM/yyyy" }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

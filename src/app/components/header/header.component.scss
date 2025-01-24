@@ -1,0 +1,24 @@
+nav {
+  background-color: var(--tertiary-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem;
+  .logo {
+    width: 155px;
+    height: 28px;
+    cursor: pointer;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  .user {
+    cursor: pointer;
+    span {
+      color: var(--secondary-color);
+    }
+  }
+}

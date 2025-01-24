@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="middle_container">
+  <app-sidebar></app-sidebar>
+  <div class="main_content">
+    <span class="title">Panoramica</span>
+    <div class="cards_container">
+      <div class="top_cards">
+        <app-card
+          [title]="'Ultimi progetti'"
+          [elements]="projects"
+          [icon]="'folder'"
+        ></app-card>
+        <app-card
+          [title]="'Ultimi dipendenti registrati'"
+          [elements]="employees"
+          [icon]="'group'"
+        ></app-card>
+      </div>
+      <div class="bottom_cards">
+        <app-card
+          [title]="'Ultime segnalazioni'"
+          [elements]="reports"
+          [icon]="'reports'"
+        ></app-card>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

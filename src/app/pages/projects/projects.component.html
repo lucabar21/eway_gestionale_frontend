@@ -1,0 +1,59 @@
+<app-header></app-header>
+<div class="middle_container">
+  <app-sidebar></app-sidebar>
+  <div class="main_content">
+    <span class="title">Progetti</span>
+
+    <div class="tabs">
+      <div class="tab-header">
+        <button
+          class="tab-button"
+          *ngFor="let project of projects; let i = index"
+          [class.active]="i === activeTab"
+          (click)="activeTab = i"
+        >
+          {{ project.name }}
+        </button>
+      </div>
+      <div class="tab-content">
+        <div
+          class="tab-panel"
+          *ngFor="let project of projects; let i = index"
+          [class.active]="i === activeTab"
+        >
+          <app-modal
+            *ngIf="isDisplayed"
+            [header]="'Dipendenti'"
+            [elements]="employees"
+          ></app-modal>
+          <div class="info_container">
+            <div class="description">
+              <span>{{ project.description }}</span>
+            </div>
+            <div class="people" (click)="toggleModal()">
+              <span class="material-icons"> group </span
+              ><span>{{ project.employees.length }}</span>
+              <span *ngIf="!isDisplayed" class="material-icons">
+                arrow_drop_down
+              </span>
+              <span *ngIf="isDisplayed" class="material-icons">
+                arrow_drop_up
+              </span>
+            </div>
+          </div>
+          <div class="date_container">
+            <div class="date">
+              <span>Data di creazione:</span>
+              <span>{{ project.created_at | date : "dd/MM/yyyy" }}</span>
+            </div>
+            <div class="update">
+              <span>Ultima modifica:</span>
+              <span>{{ project.updated_at | date : "HH:mm dd/MM/yyyy" }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

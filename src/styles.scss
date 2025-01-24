@@ -1,1 +1,76 @@
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use "@angular/material" as mat;
+
+html {
+  @include mat.theme(
+    (
+      color: (
+        theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+} /* Colors */
+:root {
+  --primary-color: #f2f4f8;
+  --secondary-color: #263347;
+  --tertiary-color: #d8dfe9;
+  --accent-color: #c03221;
+}
+
+html,
+body {
+  font-family: "Poppins", serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--primary-color);
+}
+
+app-home,
+app-projects {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+/* Stile della scrollbar */
+::-webkit-scrollbar {
+  width: 13px; /* Larghezza della scrollbar verticale */
+  height: 13px; /* Altezza della scrollbar orizzontale */
+}
+
+/* Stile del "track" (la parte della scrollbar in background) */
+::-webkit-scrollbar-track {
+  background: var(--tertiary-color); /* Colore di sfondo */
+}
+
+/* Stile del "thumb" (il cursore che si muove sulla scrollbar) */
+::-webkit-scrollbar-thumb {
+  background: var(--primary-color); /* Colore del cursore */
+  border-radius: 8px; /* Arrotondamento dei bordi */
+}
+
+/* Stile del cursore quando è in hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-color); /* Colore del cursore in hover */
+}
