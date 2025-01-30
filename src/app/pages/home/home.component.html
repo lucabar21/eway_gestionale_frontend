@@ -9,11 +9,13 @@
           [title]="'Ultimi progetti'"
           [elements]="projects"
           [icon]="'folder'"
+          [link]="'project'"
         ></app-card>
         <app-card
           [title]="'Ultimi dipendenti registrati'"
           [elements]="employees"
           [icon]="'group'"
+          [link]="'employee'"
         ></app-card>
       </div>
       <div class="bottom_cards">
@@ -21,9 +23,11 @@
           [title]="'Ultime segnalazioni'"
           [elements]="reports"
           [icon]="'reports'"
+          [link]="'report'"
         ></app-card>
       </div>
     </div>
   </div>
 </div>
+<app-spinner [isLoading]="loading"></app-spinner>
 <app-footer></app-footer>

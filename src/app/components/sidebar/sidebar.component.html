@@ -8,37 +8,29 @@
     </span>
   </div>
   <div class="middle">
-    <div class="nav_icon" routerLink="/" routerLinkActive="router-link-active">
+    <div class="nav_icon" routerLink="/home" routerLinkActive="active-link">
       <span class="material-icons"> home </span
       ><span *ngIf="isExpanded">Home</span>
     </div>
-    <div
-      class="nav_icon"
-      routerLink="/projects"
-      routerLinkActive="router-link-active"
-    >
+    <div class="nav_icon" routerLink="/projects" routerLinkActive="active-link">
       <span class="material-icons"> folder </span
       ><span *ngIf="isExpanded">Progetti</span>
     </div>
     <div
       class="nav_icon"
       routerLink="/employees"
-      routerLinkActive="router-link-active"
+      routerLinkActive="active-link"
     >
       <span class="material-icons"> badge </span
       ><span *ngIf="isExpanded">Dipendenti</span>
     </div>
-    <div
-      class="nav_icon"
-      routerLink="/reports"
-      routerLinkActive="router-link-active"
-    >
+    <div class="nav_icon" routerLink="/reports" routerLinkActive="active-link">
       <span class="material-icons"> report </span
       ><span *ngIf="isExpanded">Report</span>
     </div>
   </div>
   <div class="bottom">
-    <div class="nav_icon">
+    <div class="nav_icon" routerLink="/">
       <span class="material-icons"> logout </span>
       <span *ngIf="isExpanded">Logout</span>
     </div>

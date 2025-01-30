@@ -20,7 +20,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees">
+          <tr
+            *ngFor="let employee of employees"
+            (click)="goToElement(employee.id)"
+          >
             <td>{{ employee.name }}</td>
             <td>{{ employee.surname }}</td>
             <td class="hide_on_mobile">{{ employee.specialization }}</td>
@@ -39,4 +42,5 @@
     </div>
   </div>
 </div>
+<app-spinner [isLoading]="loading"></app-spinner>
 <app-footer></app-footer>

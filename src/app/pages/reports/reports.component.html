@@ -16,7 +16,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let report of reports">
+          <tr *ngFor="let report of reports" (click)="goToElement(report.id)">
             <td>{{ report.title }}</td>
             <td class="hide_on_mobile hide_on_tablet">
               {{ report.description.slice(0, 70) }}
@@ -35,4 +35,5 @@
     </div>
   </div>
 </div>
+<app-spinner [isLoading]="loading"></app-spinner>
 <app-footer></app-footer>

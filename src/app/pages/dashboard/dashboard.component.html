@@ -1,0 +1,263 @@
+<div class="dashboard_container">
+  <span class="material-icons close" (click)="goBack()"> close </span>
+  <span class="title">Admin Dashboard</span>
+
+  <div class="tabs">
+    <div class="tab-header">
+      <button
+        class="tab-button"
+        [class.active]="activeTab === 0"
+        (click)="setActiveTab(0)"
+      >
+        Progetti
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="activeTab === 1"
+        (click)="setActiveTab(1)"
+      >
+        Dipendenti
+      </button>
+      <button
+        class="tab-button"
+        [class.active]="activeTab === 2"
+        (click)="setActiveTab(2)"
+      >
+        Reports
+      </button>
+    </div>
+    <div class="tab-content">
+      <div class="tab-panel" [class.active]="activeTab === 0">
+        <!-- PROGETTI -->
+
+        <div class="split_section">
+          <form (ngSubmit)="onSubmit()">
+            <span class="text_header">{{
+              isEditing ? "Modifica Progetto" : "Nuovo Progetto"
+            }}</span>
+            <div class="input_container">
+              <label for="name">Nome</label>
+              <input
+                type="text"
+                id="name"
+                [(ngModel)]="project.name"
+                name="name"
+                placeholder="Inserisci il nome del progetto"
+                required
+              />
+            </div>
+            <div class="input_container">
+              <label for="description">Descrizione</label>
+              <textarea
+                id="description"
+                [(ngModel)]="project.description"
+                name="description"
+                placeholder="Aggiungi informazioni sul progetto"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <div class="input_container">
+              <label for="employees">Dipendenti</label>
+              <select
+                id="employees"
+                multiple
+                [(ngModel)]="project.employees"
+                name="employees"
+                required
+              >
+                <option
+                  *ngFor="let employee of employees"
+                  [value]="employee.id"
+                >
+                  {{ employee.name }} {{ employee.surname }}
+                </option>
+              </select>
+            </div>
+
+            <div class="button_container">
+              <button type="submit">
+                {{ isEditing ? "Salva Modifiche" : "Crea Progetto" }}
+              </button>
+              <button
+                type="button"
+                *ngIf="isEditing"
+                (click)="cancelProjectEdit()"
+              >
+                Annulla
+              </button>
+            </div>
+          </form>
+
+          <ul>
+            <span class="text_header">Progetti esistenti</span>
+            <li *ngFor="let project of projects">
+              <span>{{ project.name }}</span>
+              <div>
+                <button (click)="editProject(project)">Modifica</button>
+                <button (click)="deleteProject(project.id)">Elimina</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-panel" [class.active]="activeTab === 1">
+        <!-- DIPENDENTI -->
+
+        <div class="split_section">
+          <form (ngSubmit)="onEmployeeSubmit()">
+            <span class="text_header">{{
+              isEditing
+                ? "Modifica profilo dipendente"
+                : "Nuovo profilo dipendente"
+            }}</span>
+            <div class="input_container">
+              <label for="name">Nome</label>
+              <input
+                type="text"
+                id="name"
+                [(ngModel)]="employeeForm.name"
+                name="name"
+                placeholder="Mario"
+                required
+              />
+            </div>
+            <div class="input_container">
+              <label for="surname">Cognome</label>
+              <input
+                type="text"
+                id="surname"
+                [(ngModel)]="employeeForm.surname"
+                name="surname"
+                placeholder="Rossi"
+                required
+              />
+            </div>
+            <div class="input_container">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                [(ngModel)]="employeeForm.email"
+                name="email"
+                placeholder="example@email.com"
+                required
+              />
+            </div>
+            <div class="input_container">
+              <label for="specialization">Qualifica</label>
+              <input
+                type="text"
+                id="specialization"
+                [(ngModel)]="employeeForm.specialization"
+                name="specialization"
+                placeholder="Full Stack Developer"
+                required
+              />
+            </div>
+
+            <div class="button_container">
+              <button type="submit">
+                {{
+                  selectedEmployee ? "Salva Modifiche" : "Aggiungi dipendente"
+                }}
+              </button>
+              <button
+                type="button"
+                *ngIf="selectedEmployee"
+                (click)="cancelEmployeeEdit()"
+              >
+                Annulla
+              </button>
+            </div>
+          </form>
+
+          <ul>
+            <span class="text_header">Dipendenti esistenti</span>
+            <li *ngFor="let employee of employees">
+              <span>{{ employee.name }} {{ employee.surname }}</span>
+              <div>
+                <button (click)="editEmployee(employee)">Modifica</button>
+                <button (click)="deleteEmployee(employee.id)">Elimina</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="tab-panel" [class.active]="activeTab === 2">
+        <!-- REPORTS -->
+
+        <div class="split_section">
+          <form (ngSubmit)="onReportSubmit()">
+            <span class="text_header">{{
+              isEditing ? "Modifica segnalazione" : "Nuova segnalazione"
+            }}</span>
+
+            <div class="input_container">
+              <label for="title">Titolo</label>
+              <input
+                type="text"
+                id="title"
+                [(ngModel)]="report.title"
+                name="title"
+                placeholder="Titolo della segnalazione"
+                required
+              />
+            </div>
+
+            <div class="input_container">
+              <label for="description">Descrizione</label>
+              <textarea
+                id="description"
+                [(ngModel)]="report.description"
+                name="description"
+                placeholder="Aggiungi informazioni sulla segnalazione"
+                rows="5"
+                required
+              ></textarea>
+            </div>
+
+            <div class="input_container">
+              <label for="project_id">Progetto</label>
+              <select
+                id="project_id"
+                [(ngModel)]="report.project_id"
+                name="project_id"
+                required
+              >
+                <option *ngFor="let project of projects" [value]="project.id">
+                  {{ project.name }}
+                </option>
+              </select>
+            </div>
+
+            <div class="button_container">
+              <button type="submit">
+                {{ selectedEmployee ? "Aggiorna" : "Crea" }}
+              </button>
+              <button
+                type="button"
+                *ngIf="isEditing"
+                (click)="cancelReportEdit()"
+              >
+                Annulla
+              </button>
+            </div>
+          </form>
+
+          <ul>
+            <span class="text_header">Segnalazioni esistenti</span>
+            <li *ngFor="let report of reports">
+              <span>{{ report.title }}</span>
+              <div>
+                <button (click)="editReport(report)">Modifica</button>
+                <button (click)="deleteReport(report.id)">Elimina</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="middle_container">
+  <app-sidebar></app-sidebar>
+  <div class="details" *ngIf="report">
+    <div class="header">
+      <span
+        ><strong>{{ report.title }}</strong></span
+      >
+      <span class="material-icons" (click)="goBack()"> arrow_back </span>
+    </div>
+    <div class="info">
+      <div class="project">
+        <span> Progetto di riferimento: </span>
+        <span>{{ report.project.name }}</span>
+      </div>
+      <div class="description">
+        <span> Informazioni: </span>
+        <span>{{ report.description }}</span>
+      </div>
+      <div class="date">
+        <span>Data di creazione:</span>
+        <span>{{ report.created_at | date : "dd/MM/yyyy" }}</span>
+      </div>
+      <div class="update">
+        <span>Ultima modifica:</span>
+        <span>{{ report.updated_at | date : "HH:mm dd/MM/yyyy" }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner [isLoading]="loading"></app-spinner>
+<app-footer></app-footer>

@@ -75,8 +75,8 @@
 
       app-modal {
         position: absolute;
-        top: 25px;
-        right: 0;
+        top: 28px;
+        left: 0;
       }
 
       .date_container {
@@ -97,13 +97,15 @@
         justify-content: space-between;
 
         .description,
-        .people {
+        .people,
+        .more {
           display: flex;
           align-items: center;
           gap: 0.4rem;
           color: var(--secondary-color);
         }
 
+        .more,
         .people {
           cursor: pointer;
         }

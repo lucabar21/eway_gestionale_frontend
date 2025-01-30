@@ -4,7 +4,11 @@
     <span class="material-icons"> {{ icon }} </span>
   </div>
   <div class="container">
-    <div class="card_info" *ngFor="let element of elements | slice : 0 : 2">
+    <div
+      class="card_info"
+      *ngFor="let element of getLastTwoItems()"
+      (click)="goToElement(element.id)"
+    >
       <div>
         <span>{{ element.name || element.title }}</span>
         <span>{{ element.description || element.surname }}</span>

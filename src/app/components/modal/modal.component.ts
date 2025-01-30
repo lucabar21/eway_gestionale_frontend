@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -12,5 +13,9 @@ export class ModalComponent {
   @Input() header: string = '';
   @Input() elements: any[] = [];
 
-  constructor() {}
+  constructor(private router: Router) {}
+
+  goToElement(id: number) {
+    this.router.navigate(['/employee', id]);
+  }
 }

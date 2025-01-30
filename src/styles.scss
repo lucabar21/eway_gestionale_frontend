@@ -37,11 +37,23 @@ body {
 }
 
 app-home,
-app-projects {
+app-projects,
+app-project {
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+app-login,
+app-dashboard {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--secondary-color);
+  position: relative;
 }
 
 html,

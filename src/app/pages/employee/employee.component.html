@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div class="middle_container">
+  <app-sidebar></app-sidebar>
+  <div class="details" *ngIf="employee">
+    <div class="header">
+      <span
+        ><strong>{{ employee.name }} {{ employee.surname }}</strong></span
+      >
+      <span class="material-icons" (click)="goBack()"> arrow_back </span>
+    </div>
+    <div class="info">
+      <div class="contact">
+        <span> Contatti: </span>
+        <span>{{ employee.email }}</span>
+      </div>
+      <div class="specialization">
+        <span> Qualifica: </span>
+        <span>{{ employee.specialization }}</span>
+      </div>
+      <div class="date">
+        <span>Data di creazione:</span>
+        <span>{{ employee.created_at | date : "dd/MM/yyyy" }}</span>
+      </div>
+      <div class="update">
+        <span>Ultima modifica:</span>
+        <span>{{ employee.updated_at | date : "HH:mm dd/MM/yyyy" }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<app-spinner [isLoading]="loading"></app-spinner>
+<app-footer></app-footer>

@@ -19,6 +19,11 @@ nav {
     cursor: pointer;
     span {
       color: var(--secondary-color);
+      font-weight: 500;
+    }
+    span:hover {
+      color: var(--accent-color);
+      transition: 0.2s;
     }
   }
 }

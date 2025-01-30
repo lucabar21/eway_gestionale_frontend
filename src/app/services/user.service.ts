@@ -17,7 +17,7 @@ export class UserService {
 
   // GET singolo progetto
   getProject(id: string): Observable<any> {
-    return this.http.get<any>(this.URL + 'projects' + id);
+    return this.http.get<any>(this.URL + 'projects/' + id);
   }
 
   //GET tutti i dipendenti
@@ -27,7 +27,7 @@ export class UserService {
 
   // GET singolo dipendente
   getEmployee(id: string): Observable<any> {
-    return this.http.get<any>(this.URL + 'employees' + id);
+    return this.http.get<any>(this.URL + 'employees/' + id);
   }
 
   //GET tutti i segnalazioni
@@ -37,6 +37,6 @@ export class UserService {
 
   // GET singolo segnalazione
   getReport(id: string): Observable<any> {
-    return this.http.get<any>(this.URL + 'reports' + id);
+    return this.http.get<any>(this.URL + 'reports/' + id);
   }
 }

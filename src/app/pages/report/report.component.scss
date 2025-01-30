@@ -1,0 +1,51 @@
+.middle_container {
+  display: flex;
+
+  .details {
+    font-family: "Poppins", serif;
+    width: 100%;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.6rem;
+    background-color: var(--tertiary-color);
+
+    .header {
+      width: 90%;
+      padding: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--primary-color);
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+
+      :nth-child(2) {
+        cursor: pointer;
+      }
+    }
+
+    .info {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+
+      .project,
+      .description,
+      .date,
+      .update {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+
+        :first-child {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+}
