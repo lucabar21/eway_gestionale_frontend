@@ -32,19 +32,61 @@ export class EmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      const employeeId = +params['id'];
-      this.getEmployee(employeeId);
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id'); // L'ID dalla route è sempre una stringa
+
+      if (!id) {
+        console.error('Errore: ID mancante dalla route', id);
+        return;
+      }
+
+      // Controlla se l'ID è numerico (MySQL) o stringa con lunghezza 24 (MongoDB)
+      if (this.isValidMySQLId(id)) {
+        this.getEmployeeById(id); // Passa l'ID numerico
+      } else if (this.isValidMongoId(id)) {
+        this.getEmployeeByMongoId(id); // Passa l'ID stringa
+      } else {
+        console.error('Errore: ID non valido', id);
+      }
     });
   }
 
-  getEmployee(employeeId: number) {
+  isValidMySQLId(id: string): boolean {
+    // Verifica che l'ID sia un numero valido per MySQL
+    return !isNaN(Number(id));
+  }
+
+  isValidMongoId(id: string): boolean {
+    // Verifica che l'ID sia una stringa di lunghezza 24 per MongoDB
+    return id.length === 24;
+  }
+
+  getEmployeeById(employeeId: string) {
     this.loading = true;
-    this.userService.getEmployee(employeeId.toString()).subscribe({
+    this.userService.getEmployee(employeeId).subscribe({
       next: (data) => {
         this.employee = data;
         this.loading = false;
-        console.log('Dipendente ricevuto:', this.employee);
+        console.log('Dipendente ricevuto (MySQL):', this.employee);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Errore nella richiesta (MySQL):', err);
+      },
+    });
+  }
+
+  getEmployeeByMongoId(employeeId: string) {
+    this.loading = true;
+    this.userService.getEmployee(employeeId).subscribe({
+      next: (data) => {
+        this.employee = data;
+        this.loading = false;
+        console.log('Dipendente ricevuto (MongoDB):', this.employee);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Errore nella richiesta (MongoDB):', err);
       },
     });
   }

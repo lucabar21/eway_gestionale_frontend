@@ -12,9 +12,6 @@
             <th class="hide_on_mobile">Qualifica</th>
             <th class="hide_on_mobile hide_on_tablet">Contatti</th>
             <th class="hide_on_mobile hide_on_tablet hide_on_desktop">
-              Progetti in carico
-            </th>
-            <th class="hide_on_mobile hide_on_tablet hide_on_desktop">
               Ultimo aggiornamento
             </th>
           </tr>
@@ -29,9 +26,6 @@
             <td class="hide_on_mobile">{{ employee.specialization }}</td>
             <td class="hide_on_mobile hide_on_tablet hide_on_desktop">
               {{ employee.email }}
-            </td>
-            <td class="hide_on_mobile hide_on_tablet hide_on_desktop">
-              {{ employee.projects.length }}
             </td>
             <td class="hide_on_mobile hide_on_tablet">
               {{ employee.updated_at | date : "HH:mm dd/MM/yyyy" }}

@@ -34,19 +34,61 @@ export class ProjectComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      const projectId = +params['id'];
-      this.getProject(projectId);
+    this.route.paramMap.subscribe((params) => {
+      const id = params.get('id'); // L'ID dalla route è sempre una stringa
+
+      if (!id) {
+        console.error('Errore: ID mancante dalla route', id);
+        return;
+      }
+
+      // Controlla se l'ID è numerico (MySQL) o stringa con lunghezza 24 (MongoDB)
+      if (this.isValidMySQLId(id)) {
+        this.getProjectById(id); // Passa l'ID numerico
+      } else if (this.isValidMongoId(id)) {
+        this.getProjectByMongoId(id); // Passa l'ID stringa
+      } else {
+        console.error('Errore: ID non valido', id);
+      }
     });
   }
 
-  getProject(projectId: number) {
+  isValidMySQLId(id: string): boolean {
+    // Verifica che l'ID sia un numero valido per MySQL
+    return !isNaN(Number(id));
+  }
+
+  isValidMongoId(id: string): boolean {
+    // Verifica che l'ID sia una stringa di lunghezza 24 per MongoDB
+    return id.length === 24;
+  }
+
+  getProjectById(projectId: string) {
     this.loading = true;
-    this.userService.getProject(projectId.toString()).subscribe({
+    this.userService.getProject(projectId).subscribe({
       next: (data) => {
         this.project = data;
         this.loading = false;
-        console.log('Progetto ricevuto:', this.project);
+        console.log('Progetto ricevuto (MySQL):', this.project);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Errore nella richiesta (MySQL):', err);
+      },
+    });
+  }
+
+  getProjectByMongoId(projectId: string) {
+    this.loading = true;
+    this.userService.getProject(projectId).subscribe({
+      next: (data) => {
+        this.project = data;
+        this.loading = false;
+        console.log('Progetto ricevuto (MongoDB):', this.project);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.error('Errore nella richiesta (MongoDB):', err);
       },
     });
   }

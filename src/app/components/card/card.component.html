@@ -11,7 +11,13 @@
     >
       <div>
         <span>{{ element.name || element.title }}</span>
-        <span>{{ element.description || element.surname }}</span>
+        <span
+          >{{
+            (element.description && element.description.length > 70
+              ? element.description.substring(0, 50) + "..."
+              : element.description) || element.surname
+          }}
+        </span>
       </div>
     </div>
   </div>
